@@ -2,9 +2,14 @@ import 'dart:math';
 import 'package:flame/components.dart';
 
 import 'hex.dart';
-import 'tile_sprite.dart';
+import '../map_object_tile/tile_sprite.dart';
 
 class MapCell {
+  final Point<int> pos;
+  late final Vector2 renderPos;
+  late final Hex hex;
+  late final TileSprite tile;
+
   MapCell(this.pos) {
     late final int q;
     late final int r;
@@ -26,14 +31,7 @@ class MapCell {
     final double x = 70 * sqrt(3) * (pos.y.toDouble() + 0.5 * (pos.x & 1));
     final double y = 70 * 1.5 * pos.x;
     renderPos = Vector2(x, y);
-
-    tile = TileSprite(pos: pos, position: renderPos);
   }
-
-  final Point<int> pos;
-  late final Vector2 renderPos;
-  late final Hex hex;
-  late final SpriteComponent tile;
 
   @override
   int get hashCode {

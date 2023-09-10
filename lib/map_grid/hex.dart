@@ -6,9 +6,7 @@ class Hex {
   final int s;
 
   Hex(this.q, this.r, this.s) {
-    if (q + r + s != 0) {
-      throw ArgumentError("not a hex");
-    }
+    assert(q + r + s == 0, "not a hex");
   }
 
   Hex operator +(Hex that) {

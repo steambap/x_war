@@ -1,0 +1,4 @@
+enum Race {
+  wildLife,
+  syndicate,
+}

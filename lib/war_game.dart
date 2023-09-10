@@ -14,8 +14,10 @@ class WarGame extends FlameGame with HasKeyboardHandlerComponents {
   @override
   Future<void> onLoad() async {
     await images.loadAll([
+      "tiles/forest.png",
       "tiles/grass.png",
-      "tiles/sand.png"
+      "tiles/sand.png",
+      "tiles/water.png",
     ]);
 
     cam = CameraComponent(world: world);
