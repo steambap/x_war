@@ -18,6 +18,9 @@ class WarGame extends FlameGame with HasKeyboardHandlerComponents {
       "tiles/grass.png",
       "tiles/sand.png",
       "tiles/water.png",
+      "loc/camp.png",
+      "loc/hq.png",
+      "loc/town.png",
     ]);
 
     cam = CameraComponent(world: world);

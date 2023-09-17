@@ -3,7 +3,7 @@ import 'package:flame/game.dart';
 
 import './map_generator.dart';
 import '../map_object_tile/tile_type.dart';
-import '../map_helper.dart';
+import '../map_helper.dart' show getNeighbour;
 
 class TileGenerator {
   static List<List<double>> waterWeightTable = [
@@ -23,6 +23,18 @@ class TileGenerator {
 
     for (int i = 0; i < 5; i++) {
       balanceMapTile(i, max);
+    }
+    for (int j = 0; j < mapGen.gameSetting.mapSize.x; j++) {
+      for (int k = 0; k < mapGen.gameSetting.mapSize.y; k++) {
+        final tileType = mapGen.mapData[j][k].tile.tileType;
+        final pos = Point(j, k);
+
+        if (tileType == TileType.waterShallow) {
+          mapGen.info.waterTiles.add(pos);
+        } else {
+          mapGen.info.landTiles.add(pos);
+        }
+      }
     }
   }
 

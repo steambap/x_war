@@ -1,10 +1,14 @@
 import 'dart:math';
 
+import 'package:x_war/map_object_loc/loc_game_info.dart';
+import 'package:x_war/map_object_loc/loc_sprite.dart';
+
+import './map_cell.dart';
+import './map_component.dart';
+import '../map_object_loc/generator_loc_data.dart';
 import '../game_setting.dart';
 import '../map_object_tile/tile_data.dart';
 import '../map_object_tile/tile_sprite.dart';
-import './map_cell.dart';
-import './map_component.dart';
 import '../map_generator/map_generator.dart';
 
 class MapGrid {
@@ -27,7 +31,11 @@ class MapGrid {
 
     for (int i = 0; i < settings.mapSize.x; i++) {
       for (int j = 0; j < settings.mapSize.y; j++) {
-        initTiles(Point(i, j), mapData[i][j].tile);
+        final cellData = mapData[i][j];
+        initTiles(Point(i, j), cellData.tile);
+        if (cellData.loc != null) {
+          _initCity(Point(i, j), cellData.loc!);
+        }
       }
     }
   }
@@ -37,6 +45,14 @@ class MapGrid {
     final TileSprite sprite =
         TileSprite(pos: pos, tileData: tile, position: cell.renderPos);
     cell.tile = sprite;
+    mapComponent.add(sprite);
+  }
+
+  void _initCity(Point<int> pos, GeneratorLocData locData) {
+    final cell = cells[pos.x][pos.y];
+    final locInfo = LocGameInfo(locType: locData.locType);
+    final sprite = LocSprite(info: locInfo, position: cell.renderPos);
+    cell.loc = sprite;
     mapComponent.add(sprite);
   }
 }
