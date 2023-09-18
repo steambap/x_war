@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flame/components.dart';
+
 import '../game_setting.dart';
 import './tile_generator.dart';
 import './loc_generator.dart';
@@ -37,7 +39,7 @@ class MapGenerator {
       List<GeneratorCellData> cellList = List.empty(growable: true);
       for (int j = 0; j < size.y; j++) {
         final tile = TileData();
-        tile.tileType = tileGenerator.getRandomTileType(Point(i, j));
+        tile.tileType = tileGenerator.getRandomTileType(Block(i, j));
         tile.index = 1;
         final GeneratorCellData cell = GeneratorCellData();
         cell.tile = tile;

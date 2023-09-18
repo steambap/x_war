@@ -1,10 +1,10 @@
-import 'dart:math';
+import 'package:flame/components.dart';
 
 import './player/generator_player_data.dart';
 
 class GameSetting {
   final int seed;
-  final Point<int> mapSize;
+  final Block mapSize;
   final List<GeneratorPlayerData> playerSettings = List.empty(growable: true);
 
   GameSetting({

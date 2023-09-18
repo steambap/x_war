@@ -1,5 +1,8 @@
 // Cube coordinate hex
 
+import 'package:flutter/widgets.dart';
+
+@immutable
 class Hex {
   final int q;
   final int r;

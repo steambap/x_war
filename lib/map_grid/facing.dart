@@ -1,0 +1,4 @@
+enum Facing {
+  left,
+  right,
+}

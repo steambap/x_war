@@ -1,5 +1,5 @@
-import 'dart:math';
 import 'dart:ui';
+import 'package:flame/components.dart';
 
 import '../race.dart';
 import './map_generator.dart';
@@ -15,7 +15,7 @@ class LocGenerator {
   };
   final MapGenerator mapGen;
   final Map<LocType, int> locCountMap = {};
-  final Map<Point<int>, Map<LocType, int>> areaNumMap = {};
+  final Map<Block, Map<LocType, int>> areaNumMap = {};
 
   LocGenerator({required this.mapGen}) {
     final int baseChance =
@@ -39,8 +39,8 @@ class LocGenerator {
     }
   }
 
-  List<Point<int>> _getPossibleLocTile(LocType locType) {
-    final List<Point<int>> list = List.from(mapGen.info.landTiles);
+  List<Block> _getPossibleLocTile(LocType locType) {
+    final List<Block> list = List.from(mapGen.info.landTiles);
 
     return list;
   }
@@ -53,16 +53,16 @@ class LocGenerator {
       final list = _getPossibleLocTile(locType);
       while (list.isNotEmpty && locCountMap[locType]! > 0) {
         final int index = mapGen.rand.nextInt(list.length);
-        final Point<int> pos = list.removeAt(index);
+        final Block block = list.removeAt(index);
         bool isLocOK = true;
         // Check distance with other loc
         for (int i = 0; i < mapGen.info.locations.length; i++) {
-          final Point<int> theirPos = mapGen.info.locations[i];
+          final Block theirBlock = mapGen.info.locations[i];
           final int minDistance =
-              mapGen.mapData[theirPos.x][theirPos.y].loc?.locType != locType
+              mapGen.mapData[theirBlock.x][theirBlock.y].loc?.locType != locType
                   ? 3
                   : distanceTest;
-          final int distance = getDistance(pos, theirPos);
+          final int distance = getDistance(block, theirBlock);
           if (distance < minDistance) {
             isLocOK = false;
             break;
@@ -81,11 +81,11 @@ class LocGenerator {
               locType: locType,
               playerColor: const Color.fromARGB(1, 221, 221, 221),
               race: race);
-          mapGen.mapData[pos.x][pos.y].loc = locData;
+          mapGen.mapData[block.x][block.y].loc = locData;
           if (locType == LocType.city) {
-            mapGen.info.cities.add(pos);
+            mapGen.info.cities.add(block);
           }
-          mapGen.info.locations.add(pos);
+          mapGen.info.locations.add(block);
           locCountMap[locType] = locCountMap[locType]! - 1;
         }
       }

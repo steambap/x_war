@@ -1,5 +1,4 @@
-import 'dart:math';
-import 'package:flame/game.dart';
+import 'package:flame/components.dart';
 
 import './map_generator.dart';
 import '../map_object_tile/tile_type.dart';
@@ -27,23 +26,23 @@ class TileGenerator {
     for (int j = 0; j < mapGen.gameSetting.mapSize.x; j++) {
       for (int k = 0; k < mapGen.gameSetting.mapSize.y; k++) {
         final tileType = mapGen.mapData[j][k].tile.tileType;
-        final pos = Point(j, k);
+        final block = Block(j, k);
 
         if (tileType == TileType.waterShallow) {
-          mapGen.info.waterTiles.add(pos);
+          mapGen.info.waterTiles.add(block);
         } else {
-          mapGen.info.landTiles.add(pos);
+          mapGen.info.landTiles.add(block);
         }
       }
     }
   }
 
   void balanceMapTile(turn, max) {
-    final Point<int> mapSize = mapGen.gameSetting.mapSize;
+    final Block mapSize = mapGen.gameSetting.mapSize;
 
     for (int i = 0; i < mapSize.x; i++) {
       for (int j = 0; j < mapSize.y; j++) {
-        final ns = getNeighbour(Point(i, j), 1, mapSize);
+        final ns = getNeighbour(Block(i, j), mapSize);
         final cell = mapGen.mapData[i][j];
 
         int numOfWater = 0;
@@ -66,8 +65,8 @@ class TileGenerator {
     }
   }
 
-  int getTileWeight(Point<int> pos) {
-    final Point<int> mapSize = mapGen.gameSetting.mapSize;
+  int getTileWeight(Block pos) {
+    final Block mapSize = mapGen.gameSetting.mapSize;
     final Vector2 posPercent = Vector2(pos.x / mapSize.x, pos.y / mapSize.y);
     final double distance = posPercent.distanceTo(Vector2.all(0.5));
 
@@ -80,8 +79,8 @@ class TileGenerator {
     return 0;
   }
 
-  TileType getRandomTileType(Point<int> pos) {
-    final int weight = getTileWeight(pos);
+  TileType getRandomTileType(Block block) {
+    final int weight = getTileWeight(block);
     final num = mapGen.rand.nextInt(100);
     if (num < weight) {
       return TileType.waterShallow;

@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'package:flame/components.dart';
 import '../map_object_tile/tile_data.dart';
 import '../map_object_loc/generator_loc_data.dart';
 
@@ -7,5 +7,5 @@ class GeneratorCellData {
   GeneratorLocData? loc;
   late int tileDangerLevel;
   late bool isAround;
-  late Point<int>? parentTile;
+  late Block? parentTile;
 }
