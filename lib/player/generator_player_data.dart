@@ -1,12 +1,11 @@
-import 'package:flame/extensions.dart';
-
+import '../player_color.dart';
 import '../race.dart';
 
 class GeneratorPlayerData {
   final int playerIndex;
   final int team;
   final bool isCPU;
-  final Color color;
+  final PlayerColor color;
   final Race race;
 
   GeneratorPlayerData({

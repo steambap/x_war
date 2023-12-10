@@ -1,6 +1,6 @@
-import 'dart:ui';
 import 'package:flame/components.dart';
 
+import '../player_color.dart';
 import '../race.dart';
 import './map_generator.dart';
 import '../map_object_loc/loc_type.dart';
@@ -72,14 +72,14 @@ class LocGenerator {
         if (isLocOK) {
           late Race race;
           if (locType == LocType.city) {
-            race = Race.syndicate;
+            race = Race.human;
           } else {
             race = Race.wildLife;
           }
 
           final locData = GeneratorLocData(
               locType: locType,
-              playerColor: const Color.fromARGB(1, 221, 221, 221),
+              playerColor: PlayerColor.grey,
               race: race);
           mapGen.mapData[block.x][block.y].loc = locData;
           if (locType == LocType.city) {

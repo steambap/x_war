@@ -8,7 +8,8 @@ import '../war_game.dart';
 class LocSprite extends SpriteComponent with HasGameRef<WarGame> {
   final LocGameInfo info;
 
-  LocSprite({required this.info, required super.position});
+  LocSprite({required this.info, required super.position})
+      : super(anchor: Anchor.center);
 
   @override
   FutureOr<void> onLoad() {

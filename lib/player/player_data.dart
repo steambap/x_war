@@ -1,10 +1,9 @@
-import 'package:flame/extensions.dart';
-
+import '../player_color.dart';
 import '../race.dart';
 
 class PlayerData {
   final int playerIndex;
-  final Color color;
+  final PlayerColor color;
   final int team;
   final Race race;
   final bool status;

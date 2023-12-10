@@ -35,7 +35,7 @@ class MapComponent extends Component with HasGameRef<WarGame>, KeyboardHandler {
   void update(double dt) {
     final Vector2 velocity = direction * moveSpeed;
 
-    game.cam.moveBy(velocity);
+    game.camera.moveBy(velocity);
     super.update(dt);
   }
 }

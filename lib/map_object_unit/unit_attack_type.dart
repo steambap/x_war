@@ -1,0 +1,4 @@
+enum UnitAttackType {
+  close,
+  range,
+}

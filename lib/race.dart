@@ -1,6 +1,7 @@
 enum Race {
+  none,
   wildLife,
-  imperium,
-  syndicate,
-  cyborg,
+  human,
+  undead,
+  steam,
 }

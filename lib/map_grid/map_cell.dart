@@ -7,7 +7,7 @@ import '../map_object_loc/loc_sprite.dart';
 import '../map_helper.dart' show getCubePos;
 
 class MapCell {
-  static const double size = 70;
+  static const double size = 36;
   final Block block;
   late final Hex hex;
   late final Vector2 renderPos;

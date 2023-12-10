@@ -10,7 +10,8 @@ class TileSprite extends SpriteComponent with HasGameRef<WarGame> {
   final TileData tileData;
 
   TileSprite(
-      {required this.block, required this.tileData, required super.position});
+      {required this.block, required this.tileData, required super.position})
+      : super(anchor: Anchor.center);
 
   @override
   FutureOr<void> onLoad() {

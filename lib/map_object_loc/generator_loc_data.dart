@@ -1,12 +1,11 @@
-import 'dart:ui';
-
 import './loc_type.dart';
+import '../player_color.dart';
 import '../race.dart';
 import '../building/building_type.dart';
 
 class GeneratorLocData {
   final LocType locType;
-  final Color playerColor;
+  final PlayerColor playerColor;
   final Race race;
   final List<BuildingType> buildings = [];
 
